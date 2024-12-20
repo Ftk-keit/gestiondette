@@ -472,8 +472,8 @@ public class ClientController {
                 Client.class);
             query.setParameter("telephone", phoneNumber);
             
-            Client client = query.getSingleResult();
-            showDebtRequestDialog(client);
+            currentClient = query.getSingleResult();
+            showDebtRequestDialog(currentClient);
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Erreur",
                 "Aucun client trouvé avec ce numéro : " + phoneNumber);
@@ -537,7 +537,7 @@ public class ClientController {
         prixCol.setCellValueFactory(new PropertyValueFactory<>("prix"));
 
         TableColumn<Article, Integer> stockCol = new TableColumn<>("Quantité en Stock");
-        stockCol.setCellValueFactory(new PropertyValueFactory<>("qteStock"));
+        stockCol.setCellValueFactory(new PropertyValueFactory<>("qte_stock"));
 
         tableView.getColumns().addAll(selectCol, libelleCol, prixCol, stockCol);
         tableView.setEditable(true);

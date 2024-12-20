@@ -19,8 +19,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        DataInitializer dataInitializer = new DataInitializer();
-        dataInitializer.init();
+        // DataInitializer dataInitializer = new DataInitializer();
+        // dataInitializer.init();
     
         Parent root = FXMLLoader.load(getClass().getResource("/views/accueil.fxml"));
         primaryStage.setTitle("Sélection du Rôle");

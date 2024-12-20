@@ -28,6 +28,7 @@ public class Article {
     @OneToMany(mappedBy = "article")
     private List<DetailDebtRequest> detailDebts;
 
+
     @Override
     public String toString() {
         return "Article [id=" + id + ", libelle=" + libelle + ", qteStock=" + qte_stock + ", prix=" + prix + "]";
