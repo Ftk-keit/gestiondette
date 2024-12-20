@@ -10,7 +10,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "articles")
 public class Article {
@@ -32,5 +31,53 @@ public class Article {
     @Override
     public String toString() {
         return "Article [id=" + id + ", libelle=" + libelle + ", qteStock=" + qte_stock + ", prix=" + prix + "]";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    public int getQte_stock() {
+        return qte_stock;
+    }
+
+    public void setQte_stock(int qte_stock) {
+        this.qte_stock = qte_stock;
+    }
+
+    public boolean isIs_archived() {
+        return is_archived;
+    }
+
+    public void setIs_archived(boolean is_archived) {
+        this.is_archived = is_archived;
+    }
+
+    public int getPrix() {
+        return prix;
+    }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
+
+    public List<DetailDebtRequest> getDetailDebts() {
+        return detailDebts;
+    }
+
+    public void setDetailDebts(List<DetailDebtRequest> detailDebts) {
+        this.detailDebts = detailDebts;
     }
 }

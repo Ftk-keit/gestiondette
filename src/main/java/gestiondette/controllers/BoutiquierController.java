@@ -531,23 +531,23 @@ public class BoutiquierController {
         }
     }
 
-    // @FXML
-    // private void viewDebtPayments() {
-    //     Debt selectedDebt = clientDebtsTable.getSelectionModel().getSelectedItem();
-    //     if (selectedDebt != null) {
-    //         TypedQuery<Payment> query = em.createQuery("SELECT p FROM Payment p WHERE p.debt.id = :debtId",
-    //                 Payment.class);
-    //         query.setParameter("debtId", selectedDebt.getId());
-    //         List<Payment> payments = query.getResultList();
+    @FXML
+    private void viewDebtPayments() {
+        Debt selectedDebt = clientDebtsTable.getSelectionModel().getSelectedItem();
+        if (selectedDebt != null) {
+            TypedQuery<Payment> query = em.createQuery("SELECT p FROM Payment p WHERE p.debt.id = :debtId",
+                    Payment.class);
+            query.setParameter("debtId", selectedDebt.getId());
+            List<Payment> payments = query.getResultList();
 
-    //         // Afficher les paiements de la dette sélectionnée
-    //         debtPaymentsTable.getItems().clear();
-    //         debtPaymentsTable.getItems().addAll(payments);
-    //     } else {
-    //         // Gérer le cas où aucune dette n'est sélectionnée
-    //         System.out.println("Aucune dette sélectionnée.");
-    //     }
-    // }
+            // Afficher les paiements de la dette sélectionnée
+            debtPaymentsTable.getItems().clear();
+            debtPaymentsTable.getItems().addAll(payments);
+        } else {
+            // Gérer le cas où aucune dette n'est sélectionnée
+            System.out.println("Aucune dette sélectionnée.");
+        }
+    }
 
     // @FXML
     // private void validateDebtRequest() {

@@ -48,10 +48,12 @@ public class AuthController {
                         .setParameter("surname", usernameField.getText())
                         .setParameter("telephone", passwordField.getText())
                         .getSingleResult();
-                System.out.println( "--------------------------------------------------------------------------------");
-                System.out.println("Client connecté");
-                System.out.println( "--------------------------------------------------------------------------------");
-                openWindow("/views/client.fxml", "Menu Client");
+                        if (client != null) {
+                            System.out.println( "--------------------------------------------------------------------------------");
+                            System.out.println("Client connecté");
+                            System.out.println( "--------------------------------------------------------------------------------");
+                            openWindow("/views/client/index.fxml", "Menu Client");
+                        }
             } else {
                 User user = em.createQuery(
                         "SELECT u FROM User u WHERE u.login = :login AND u.password = :password AND u.role = :role",

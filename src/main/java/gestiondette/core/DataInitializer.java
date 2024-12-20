@@ -47,6 +47,7 @@ public class DataInitializer {
         Article article = new Article();
         article.setLibelle("Article 1");
         article.setPrix(10000);
+        article.setIs_archived(false);
         article.setQte_stock(10);
         
 

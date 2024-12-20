@@ -10,16 +10,15 @@ CREATE TABLE Users (
 );
 
 -- Création de la table des clients
-CREATE TABLE Client (
+CREATE TABLE Clients (
     id SERIAL PRIMARY KEY,
     surname VARCHAR(255) NOT NULL,
     telephone VARCHAR(20) NOT NULL UNIQUE,
     addresse TEXT NOT NULL,
     date DATE NOT NULL DEFAULT CURRENT_DATE,
-    user_id INT UNIQUE, -- Lien vers un utilisateur
-    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE SET NULL
+    user_id INT UNIQUE,
     created_at DATE NOT NULL DEFAULT CURRENT_DATE,
-
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE SET NULL
 );
 
 -- Création de la table des articles
@@ -50,8 +49,8 @@ CREATE TABLE DetailDebts (
     prix NUMERIC(10, 2) NOT NULL,
     article_id INT NOT NULL,
     debt_id INT NOT NULL,
-    FOREIGN KEY (debt_id) REFERENCES Debt(id) ON DELETE CASCADE,
-    FOREIGN KEY (article_id) REFERENCES Article(id) ON DELETE CASCADE
+    FOREIGN KEY (debt_id) REFERENCES Debts(id) ON DELETE CASCADE,
+    FOREIGN KEY (article_id) REFERENCES Articles(id) ON DELETE CASCADE
 );
 
 -- Création de la table des paiements
@@ -60,7 +59,7 @@ CREATE TABLE Payments (
     date DATE NOT NULL DEFAULT CURRENT_DATE,
     amount NUMERIC(10, 2) NOT NULL,
     debt_id INT NOT NULL,
-    FOREIGN KEY (debt_id) REFERENCES Debt(id) ON DELETE CASCADE
+    FOREIGN KEY (debt_id) REFERENCES Debts(id) ON DELETE CASCADE
 );
 
 -- Création de la table des demandes de dette
@@ -69,7 +68,7 @@ CREATE TABLE DebtRequests (
     date DATE NOT NULL DEFAULT CURRENT_DATE,
     status VARCHAR(50) NOT NULL DEFAULT 'En Cours', -- "En Cours", "Annuler", "Valider"
     client_id INT NOT NULL,
-    FOREIGN KEY (client_id) REFERENCES Client(id) ON DELETE CASCADE
+    FOREIGN KEY (client_id) REFERENCES Clients(id) ON DELETE CASCADE
 );
 
 -- Création de la table des détails des demandes de dette
@@ -79,11 +78,11 @@ CREATE TABLE DetailDebtRequests (
     debt_request_id INT NOT NULL,
     article_id INT NOT NULL,
     FOREIGN KEY (debt_request_id) REFERENCES DebtRequest(id) ON DELETE CASCADE,
-    FOREIGN KEY (article_id) REFERENCES Article(id) ON DELETE CASCADE
+    FOREIGN KEY (article_id) REFERENCES Articles(id) ON DELETE CASCADE
 );
 
 -- Contraintes supplémentaires pour garantir l'intégrité des données
-ALTER TABLE Debts ADD CONSTRAINT chk_remaining_amount CHECK (remaining_amount >= 0);
+ALTER TABLE Debts ADD CONSTRAINT chk_remaining_amount CHECK (remainingamount >= 0);
 ALTER TABLE Payments ADD CONSTRAINT chk_payment_amount CHECK (amount > 0);
 ALTER TABLE DetailDebts ADD CONSTRAINT chk_quantity CHECK (quantity > 0);
 ALTER TABLE DetailDebtRequests ADD CONSTRAINT chk_request_quantity CHECK (quantity > 0);
